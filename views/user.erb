@@ -1,1 +1,4 @@
-<h2>こんにちは、<%= params[:name] %>さん！</h2>
+<%# 仮で全ユーザー表示 %>
+<% @users.each do |user| %>
+        <p>ユーザー<%= user['id'] %><%= user['name'] %></p>
+<% end %>
