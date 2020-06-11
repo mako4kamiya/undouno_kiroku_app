@@ -1,12 +1,12 @@
 require 'bundler' #bundlerだけrequireして、
 Bundler.require   #bundlerの中のgemを一括でrequire
 
-db = PG::connect(
-    :host => 'localhost',
-    :user => ENV.fetch('USER', 'MakoKamiya'),
-    :password => '',
-    :dbname => 'undouno_kiroku_app'
-)
+# db = PG::connect(
+#     :host => 'localhost',
+#     :user => ENV.fetch('USER', 'MakoKamiya'),
+#     :password => '',
+#     :dbname => 'undouno_kiroku_app'
+# )
 
 # ホーム、サインアップ画面
 get '/' do

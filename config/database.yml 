@@ -1,0 +1,2 @@
+adapter: postgresql
+database: undouno_kiroku_app
