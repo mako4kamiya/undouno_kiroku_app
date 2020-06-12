@@ -1,12 +1,8 @@
 require 'bundler' #bundlerだけrequireして、
 Bundler.require   #bundlerの中のgemを一括でrequire
 
-# db = PG::connect(
-#     :host => 'localhost',
-#     :user => ENV.fetch('USER', 'MakoKamiya'),
-#     :password => '',
-#     :dbname => 'undouno_kiroku_app'
-# )
+class User < ActiveRecord::Base
+end
 
 # ホーム、サインアップ画面
 get '/' do
@@ -14,14 +10,16 @@ get '/' do
 end
 
 post '/signup' do
-    name = params[:name]
-    password = params[:password]
-    db.exec_params("INSERT INTO users (name, password) VALUES ($1, $2)", [name, password])
+    # name = params[:name]
+    # password = params[:password]
+    # db.exec_params("INSERT INTO users (name, password) VALUES ($1, $2)", [name, password])
+    User.create(name: params[:name], password: params[:password]) #バリデーションを行う際にnewメソッドの変えよう。
     redirect '/user/index'
 end
 
 get '/user/index' do
-    @users = db.exec_params("SELECT * FROM users").to_a
+    # @users = db.exec_params("SELECT * FROM users").to_a
+    @users = User.all
     erb :user
 end
 
