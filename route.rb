@@ -1,8 +1,9 @@
-require 'bundler' #bundlerだけrequireして、
-Bundler.require   #bundlerの中のgemを一括でrequire
+require 'bundler'
+Bundler.require
 
-class User < ActiveRecord::Base
-end
+# class User < ActiveRecord::Base
+# end
+require_relative 'models' #相対パスで指定でファイルを読み込みできる。
 
 # ホーム、サインアップ画面
 get '/' do
@@ -10,15 +11,11 @@ get '/' do
 end
 
 post '/signup' do
-    # name = params[:name]
-    # password = params[:password]
-    # db.exec_params("INSERT INTO users (name, password) VALUES ($1, $2)", [name, password])
     User.create(name: params[:name], password: params[:password]) #バリデーションを行う際にnewメソッドの変えよう。
     redirect '/user/index'
 end
 
 get '/user/index' do
-    # @users = db.exec_params("SELECT * FROM users").to_a
     @users = User.all
     erb :user
 end
