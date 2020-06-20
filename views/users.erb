@@ -1,0 +1,6 @@
+<%# 仮で全ユーザー表示 %>
+<% @users.each do |user| %>
+        <p>ユーザー<%= user['id'] %><%= user['name'] %></p>
+        <a type="submit" class="btn btn-outline-danger btn-sm" href="/user_delete/<%= user['id'] %>">とうろくかいじょ</a>
+        <hr>
+<% end %>

@@ -1,25 +1,21 @@
 <header>
     <nav class="navbar navbar-expand-sm navbar-light bg-light">
         <a class="navbar-brand" href="#">うんどうのきろく</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        <%if logged_in? %>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <div class="justify-content-end collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="nav">
-                <li class="nav-item">
-                    <a class="text-secondary nav-link" href="#">ろぐあうと</a>
-                </li>
-                <li class="nav-item">
-                    <a class="text-secondary nav-link" href="#">ともだち</a>
-                </li>
-                <%# <li class="nav-item">
-                    <a class="text-secondary nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="text-secondary nav-link" href="#">Link</a>
-                </li> %>
-            </ul>
-        </div>
+            <div class="justify-content-end collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a type="submit" class="text-secondary nav-link" href="/logout">ろぐあうと</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="text-secondary nav-link" href="#">ともだち</a>
+                    </li>
+                </ul>
+            </div>
+        <%end %>
     </nav>
 </header>
