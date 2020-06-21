@@ -17,8 +17,8 @@ get '/' do
 end
 
 post '/user_create' do
-    # User.create(name: params[:name], password: params[:password]) #バリデーションを行う際にnewメソッドの変えよう。
-    user = User.new(name: params[:name], password: params[:password])
+    password = BCrypt::Password.create(params[:password])
+    user = User.new(name: params[:name], password: password)
     if  user.save
         session[:current_user_id] = user.id
         flash[:success] = "こんにちは#{user.name}さん！"
@@ -44,7 +44,7 @@ post '/login' do
     if !user
         flash[:danger] = "登録されていません。"
         redirect '/'
-    elsif user.password != params[:password]
+    elsif  BCrypt::Password.new(user.password) != params[:password]
         flash[:danger] = "パスワードが間違っています。"
         redirect '/'
     else
