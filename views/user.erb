@@ -1,2 +1,7 @@
-<p>ユーザー<%= @current_user.id %><%= @current_user.name%></p>
-<a type="submit" class="btn btn-outline-danger btn-sm" href="/user_delete/<%= @current_user.id %>">とうろくかいじょ</a>
+<p>ユーザー<%= @user.id %><%= @user.name%></p>
+<% if @current_user === @user%>
+    <form action="/user_delete/<%= @user.id %>" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" class="btn btn-outline-danger btn-sm" value="とうろくかいじょ">
+    </form>
+<% end %>

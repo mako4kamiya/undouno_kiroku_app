@@ -29,9 +29,11 @@ post '/user_create' do
     end
 end
 
-get '/user_delete/:id' do
+delete '/user_delete/:id' do
     login_check
-    User.find_by(id: params[:id]).destroy
+    @current_user = User.find_by(id: session[:current_user_id])
+    @user = User.find_by(id: params[:id])
+    @user.destroy
     session[:current_user_id] = nil
     flash[:success] = "ユーザー情報を消去しました。"
     redirect '/'
@@ -67,6 +69,7 @@ end
 
 get '/user/:id' do
     login_check
+    @user = User.find_by(id: params[:id])
     @current_user = User.find_by(id: session[:current_user_id])
     erb :user
 end
