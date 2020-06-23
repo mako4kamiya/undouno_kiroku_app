@@ -1,7 +1,46 @@
-<p>ユーザー<%= @user.id %><%= @user.name%></p>
-<% if @current_user === @user%>
-    <form action="/user_delete/<%= @user.id %>" method="POST">
-        <input type="hidden" name="_method" value="DELETE">
-        <input type="submit" class="btn btn-outline-danger btn-sm" value="とうろくかいじょ">
-    </form>
-<% end %>
+<div id="user">
+    <div class="row justify-content-center align-items-center px-5 pb-5">
+        <div class="col">
+            <p><%= @user.name%></p>
+            <% if @current_user === @user%>
+                <form action="/user_delete/<%= @user.id %>" method="POST">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="submit" class="btn btn-outline-danger btn-sm btn-block" value="とうろくかいじょ">
+                </form>
+            <% end %>
+        </div>
+        <% if @current_user === @user%>
+            <div class="col">
+                <form action="/add_record_muscles" method="POST">
+                    <div>
+                        <select class="form__select form-control form-control-sm" name="part">
+                            <option disabled selected>部位</option>
+                            <option value="abs">腹筋系</option>
+                            <option value="back">背筋系</option>
+                            <option value="arm">上腕系</option>
+                            <option value="lower_body">下半身系</option>
+                            <option value="jog">ジョギング</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select name="min" class="form-control form-control-sm">
+                                <option disabled selected >時間</option>
+                            <% num = 1.step %>
+                            <% num.each do |n| %>
+                                <option value="<%=n%>"><%=n%>分</option>
+                                <% if n == 60 %>
+                                    <% break %>
+                                <% end %>
+                            <% end %>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-sm btn-block mt-3">きろくする</button>
+                </form>
+            </div>
+        <% end %>
+    </div>
+    <div class="row justify-content-center align-items-center">
+        <div class="col-sm-12 col-md-6 p-5"><%#= @chart1.to_html %></div>
+        <div class="col-sm-12 col-md-6 p-5"><%= @chart2.to_html %></div>
+    </div>
+</div>
