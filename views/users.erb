@@ -1,8 +1,11 @@
 <%# 仮で全ユーザー表示 %>
 <% @users.each do |user| %>
-        <p>ユーザー<%= user['id'] %><%= user['name'] %></p>
-        <% if @current_user === user %>
-                <a type="submit" class="btn btn-outline-danger btn-sm" href="/user_delete/<%= user['id'] %>">とうろくかいじょ</a>
-        <% end %>
+        <div>
+                <a href="/user/<%= user.id%>"><p><%= user.name %></p></a>
+                
+                <% if @current_user === user %>
+                        <a type="submit" class="btn btn-outline-danger btn-sm" href="/user_delete/<%= user['id'] %>">とうろくかいじょ</a>
+                <% end %>
+        </div>
         <hr>
 <% end %>
