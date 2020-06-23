@@ -144,3 +144,7 @@ end
 
 post 'unfollow/:id' do
 end
+
+get '/help' do
+    erb :index
+end
