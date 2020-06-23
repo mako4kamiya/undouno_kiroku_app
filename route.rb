@@ -76,6 +76,7 @@ end
 #####################
 get '/users' do
     login_check
+    @current_user = User.find_by(id: session[:current_user_id])
     @users = User.all
     erb :users
 end
